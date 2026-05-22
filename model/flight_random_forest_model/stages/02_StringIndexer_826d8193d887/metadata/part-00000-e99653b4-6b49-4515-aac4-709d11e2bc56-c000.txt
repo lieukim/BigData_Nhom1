@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.StringIndexerModel","timestamp":1779463259282,"sparkVersion":"4.1.1","uid":"StringIndexer_826d8193d887","paramMap":{"handleInvalid":"keep","inputCol":"DAY_OF_WEEK","outputCol":"DAY_OF_WEEK_Index"},"defaultParamMap":{"handleInvalid":"error","outputCol":"StringIndexer_826d8193d887__output","stringOrderType":"frequencyDesc"}}

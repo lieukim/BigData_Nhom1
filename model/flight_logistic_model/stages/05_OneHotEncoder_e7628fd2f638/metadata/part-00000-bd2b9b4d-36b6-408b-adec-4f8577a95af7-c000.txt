@@ -1,1 +1,0 @@
-{"class":"org.apache.spark.ml.feature.OneHotEncoderModel","timestamp":1779424956905,"sparkVersion":"4.1.1","uid":"OneHotEncoder_e7628fd2f638","paramMap":{"inputCol":"AIRLINE_Index","outputCol":"AIRLINE_Vec"},"defaultParamMap":{"dropLast":true,"handleInvalid":"error","outputCol":"OneHotEncoder_e7628fd2f638__output"}}
