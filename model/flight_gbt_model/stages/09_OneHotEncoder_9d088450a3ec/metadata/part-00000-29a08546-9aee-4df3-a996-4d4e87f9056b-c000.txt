@@ -1,1 +1,0 @@
-{"class":"org.apache.spark.ml.feature.OneHotEncoderModel","timestamp":1779462918983,"sparkVersion":"4.1.1","uid":"OneHotEncoder_9d088450a3ec","paramMap":{"inputCol":"DESTINATION_AIRPORT_Index","outputCol":"DESTINATION_AIRPORT_Vec"},"defaultParamMap":{"dropLast":true,"handleInvalid":"error","outputCol":"OneHotEncoder_9d088450a3ec__output"}}
