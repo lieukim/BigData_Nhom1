@@ -2,16 +2,20 @@ import csv
 import json
 import time
 from confluent_kafka import Producer
+from hdfs import InsecureClient # Tải thư viện hdfs
 
 # ── Config ────────────────────────────────────────────────────────
 KAFKA_BOOTSTRAP = "localhost:9092"
 TOPIC           = "flight-stream"
-DELAY_SECONDS   = 0.05
-LOCAL_PATH = r"D:\Documents\BigData\src\dataset\flights.csv"  # đổi path thật của bạn
+DELAY_SECONDS   = 0.01
+
+HDFS_URL = "http://localhost:9870"
+HDFS_FILE_PATH = "/data/flights.csv"
+HDFS_USER = "hadoop"  # Tên user chạy Hadoop của nhóm bạn (có thể là root, hadoop, ubuntu...)
 
 # ── Producer setup ────────────────────────────────────────────────
 producer = Producer({
-    'bootstrap.servers': 'localhost:9092',
+    'bootstrap.servers': KAFKA_BOOTSTRAP,
     'broker.address.family': 'v4',
     'message.timeout.ms': 10000,      # tăng timeout lên 10 giây
     'request.timeout.ms': 10000,
@@ -25,11 +29,17 @@ print(f"Connected to Kafka at {KAFKA_BOOTSTRAP}")
 print(f"Streaming to topic: {TOPIC}")
 print("-" * 50)
 
+try:
+    hdfs_client = InsecureClient(HDFS_URL, user=HDFS_USER)
+except Exception as e:
+    print(f"Lỗi khởi tạo HDFS Client: {e}")
+    exit(1)
+
 # ── Stream rows ───────────────────────────────────────────────────
 sent = 0
 skipped = 0
 
-with open(LOCAL_PATH, encoding="utf-8") as f:
+with hdfs_client.read(HDFS_FILE_PATH, encoding="utf-8") as f:
     reader = csv.DictReader(f)
     for row in reader:
         try:
