@@ -2,7 +2,7 @@ import csv
 import json
 import time
 from confluent_kafka import Producer
-from hdfs import InsecureClient # Tải thư viện hdfs
+from hdfs import InsecureClient
 
 # ── Config ────────────────────────────────────────────────────────
 KAFKA_BOOTSTRAP = "localhost:9092"
@@ -11,13 +11,13 @@ DELAY_SECONDS   = 0.01
 
 HDFS_URL = "http://localhost:9870"
 HDFS_FILE_PATH = "/data/flights.csv"
-HDFS_USER = "hadoop"  # Tên user chạy Hadoop của nhóm bạn (có thể là root, hadoop, ubuntu...)
+HDFS_USER = "hadoop"
 
 # ── Producer setup ────────────────────────────────────────────────
 producer = Producer({
     'bootstrap.servers': KAFKA_BOOTSTRAP,
     'broker.address.family': 'v4',
-    'message.timeout.ms': 10000,      # tăng timeout lên 10 giây
+    'message.timeout.ms': 10000,
     'request.timeout.ms': 10000,
 })
 
